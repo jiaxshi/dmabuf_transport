@@ -1,0 +1,18 @@
+name: Lint Actions Workflows
+
+on: [push, pull_request]
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Run Rhysd actionlint
+      id: rhysd_actionlint
+      uses: devops-actions/actionlint@v0.1.9
+      #continue-on-error: true
+      with:
+        shellcheck_opts: "--exclude=SC2086"
